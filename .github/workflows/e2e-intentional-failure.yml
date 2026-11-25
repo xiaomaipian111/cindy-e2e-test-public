@@ -1,0 +1,16 @@
+# Cindy 端到端测试用：故意失败的检查，供「checks 失败」状态样本使用。
+# 不要修复它；需要「checks 通过」的样本时另建 workflow。
+name: e2e-intentional-failure
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  fail-on-purpose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail on purpose
+        run: |
+          echo "This check fails on purpose for Cindy e2e PR-state fixtures."
+          exit 1
